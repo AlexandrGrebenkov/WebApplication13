@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -43,7 +41,7 @@ namespace WebApplication13.Controllers
             var adminRole = await roleManager.FindByNameAsync("admin");
             var admins = await userManager.Users
                     .Where(u =>
-                        u.UserRoles.Any(r => r.RoleId == adminRole.Id)
+                        u.UserRoles.Any(r => r.Role.Name == "admin") // Тут всё работает, но хочу вынести в отдельный экспрешен всю строчку
                     ).ToListAsync();
         }
 
@@ -54,6 +52,7 @@ namespace WebApplication13.Controllers
             {
                 return null;
             }
+            // Нужно ещё Role подгрузить что бы можно было достучаться до имени роли.
             await context.Entry(user)
                 .Collection(_ => _.UserRoles)
                 .LoadAsync();
