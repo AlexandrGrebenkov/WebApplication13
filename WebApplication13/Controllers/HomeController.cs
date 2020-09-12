@@ -52,10 +52,6 @@ namespace WebApplication13.Controllers
             {
                 return null;
             }
-            // Нужно ещё Role подгрузить что бы можно было достучаться до имени роли.
-            await context.Entry(user)
-                .Collection(_ => _.UserRoles)
-                .LoadAsync();
             return user;
         }
 

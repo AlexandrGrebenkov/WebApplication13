@@ -5,6 +5,7 @@ namespace WebApplication13.DomainModels
 {
     public class ApplicationUser : IdentityUser
     {
-        public ICollection<ApplicationUserRole> UserRoles { get; } = new List<ApplicationUserRole>();
+        public ICollection<ApplicationUserRole> UserRoles { get; } =
+            new List<ApplicationUserRole>();
     }
 }
